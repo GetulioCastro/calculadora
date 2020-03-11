@@ -3,13 +3,19 @@ from tkinter import *
 janela = Tk()
 
 Label(janela, text="Calculadora", bg="#C0C0C0").pack()
+
+# dimensonamento e configurações da tela principal
 janela.title("Calc")
 janela.geometry("300x400+300+150")
 janela["bg"] = "#ADD8E6"
+janela.resizable(0, 0)
+janela.iconbitmap("calculator.ico")
 
+# tela de entrada dos números e operações
 ed1 = Entry(janela)
 ed1.place(x=80, y=100)
 
+# botões de números e operações
 bt1 = Button(janela, width=4, text="1")
 bt1.place(x=80, y=130)
 bt2 = Button(janela, width=4, text="2")
