@@ -15,14 +15,17 @@ janela.wm_iconbitmap("calculator.ico")
 
 
 # função click
-def click(evento):
+def click(event):
     global ed1, tela
-    text = evento.widget.cget("text")
+    text = event.widget.cget("text")
     if text == "=":
         if ed1.get().isdigit():
             value = float(ed1.get())
         else:
-            value = eval(ed1.get())
+            try:
+                value = eval(ed1.get())
+            except Exception as e:
+                value = "Error"
 
         ed1.set(value)
         tela.update()
@@ -104,10 +107,9 @@ frm.pack()
 
 frm = Frame(janela, bg="#ADD8E6")
 bt1 = Button(frm, width=27, text="C", font="lucida 10 bold")
+bt1.bind("<Button-1>", click)
 bt1.pack()
 frm.pack()
-
-
 
 # manter a janela aberta
 janela.mainloop()
