@@ -7,50 +7,107 @@ calc = Label(janela, text="Calculadora", bg="#C0C0C0", width=30, font="times 16 
 calc.pack()
 
 # dimensonamento e configurações da tela principal
-janela.title("CalC")
+janela.title("Single Calc")
 janela.geometry("300x400+500+200")
 janela["bg"] = "#ADD8E6"
 janela.resizable(0, 0)
-janela.iconbitmap("calculator.ico")
+janela.wm_iconbitmap("calculator.ico")
+
+
+# função click
+def click(evento):
+    global ed1, tela
+    text = evento.widget.cget("text")
+    if text == "=":
+        if ed1.get().isdigit():
+            value = float(ed1.get())
+        else:
+            value = eval(ed1.get())
+
+        ed1.set(value)
+        tela.update()
+
+    elif text == "C":
+        ed1.set("")
+        tela.update()
+    else:
+        ed1.set(ed1.get() + text)
+        tela.update()
 
 
 # tela de entrada dos números e operações
-ed1 = Entry(janela)
-ed1.place(x=80, y=100)
+ed1 = StringVar()
+ed1.set("")
+tela = Entry(janela, textvar=ed1, font="lucida 12 bold")
+tela.pack(fill=X, ipadx=10, padx=10, pady=10)
 
 # botões contendo números e operações
-bt1 = Button(janela, width=4, text="1")
-bt1.place(x=80, y=130)
-bt2 = Button(janela, width=4, text="2")
-bt2.place(x=120, y=130)
-bt3 = Button(janela, width=4, text="3")
-bt3.place(x=160, y=130)
-bt4 = Button(janela, width=4, text="+")
-bt4.place(x=200, y=130)
-bt5 = Button(janela, width=4, text="4")
-bt5.place(x=80, y=158)
-bt6 = Button(janela, width=4, text="5")
-bt6.place(x=120, y=158)
-bt7 = Button(janela, width=4, text="6")
-bt7.place(x=160, y=158)
-bt8 = Button(janela, width=4, text="-")
-bt8.place(x=200, y=158)
-bt9 = Button(janela, width=4, text="7")
-bt9.place(x=80, y=186)
-bt10 = Button(janela, width=4, text="8")
-bt10.place(x=120, y=186)
-bt11 = Button(janela, width=4, text="9")
-bt11.place(x=160, y=186)
-bt12 = Button(janela, width=4, text="*")
-bt12.place(x=200, y=186)
-bt13 = Button(janela, width=4, text=".")
-bt13.place(x=80, y=214)
-bt14 = Button(janela, width=4, text="0")
-bt14.place(x=120, y=214)
-bt15 = Button(janela, width=4, text="=")
-bt15.place(x=160, y=214)
-bt16 = Button(janela, width=4, text="/")
-bt16.place(x=200, y=214)
+frm = Frame(janela, bg="#ADD8E6")
+bt1 = Button(frm, width=4, text="1", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="2", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="3", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="+", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+frm.pack()
+
+frm = Frame(janela, bg="#ADD8E6")
+bt1 = Button(frm, width=4, text="4", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="5", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="6", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="-", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+frm.pack()
+
+frm = Frame(janela, bg="#ADD8E6")
+bt1 = Button(frm, width=4, text="7", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="8", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="9", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="*", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+frm.pack()
+
+frm = Frame(janela, bg="#ADD8E6")
+bt1 = Button(frm, width=4, text=".", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="0", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="=", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+bt1 = Button(frm, width=4, text="/", font="lucida 10 bold")
+bt1.pack(side=LEFT, padx=10, pady=10)
+bt1.bind("<Button-1>", click)
+frm.pack()
+
+frm = Frame(janela, bg="#ADD8E6")
+bt1 = Button(frm, width=27, text="C", font="lucida 10 bold")
+bt1.pack()
+frm.pack()
+
+
 
 # manter a janela aberta
 janela.mainloop()
